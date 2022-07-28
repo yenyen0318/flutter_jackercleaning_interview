@@ -64,6 +64,7 @@ class _CartPageState extends State<CartPage> {
                 text: "結帳",
                 onPressed: () {
                   showDialog<String>(
+                    barrierDismissible: false,
                     context: context,
                     builder: (BuildContext context) => AlertDialog(
                       title: const Text('結帳成功'),
