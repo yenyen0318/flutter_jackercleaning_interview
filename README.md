@@ -2,7 +2,7 @@
 
 | ⽰意圖1 | ⽰意圖2 | 
 | -------- | -------- | 
-| ![](https://i.imgur.com/7HXxYeq.gif)     | ![](https://i.imgur.com/t6qjy6f.gif)     | 
+| ![](/assets/demo1.gif)     | ![](/assets/demo2.gif)    | 
 
 
 * ⽰意圖1
