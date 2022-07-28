@@ -1,8 +1,8 @@
 # 潔客幫實作考題
 
-| ⽰意圖1 | ⽰意圖2 | ⽰意圖3 |
-| -------- | -------- | -------- |
-| ![](https://i.imgur.com/iyJKPMT.png)     | ![](https://i.imgur.com/UkoEUqk.png)     | ![](https://i.imgur.com/ZwZt7eF.png)     |
+| ⽰意圖1 | ⽰意圖2 | 
+| -------- | -------- | 
+| ![](https://i.imgur.com/7HXxYeq.gif)     | ![](https://i.imgur.com/t6qjy6f.gif)     | 
 
 
 * ⽰意圖1
