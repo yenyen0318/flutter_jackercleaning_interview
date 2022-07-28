@@ -35,29 +35,40 @@ class _ItemTileState extends State<ItemTile> {
         Row(children: [
           IconButton(
             icon: Icon(Icons.add_circle,
-                color: quantity < 10
+                color: checkQuantity(QuantityType.add)
                     ? Theme.of(context).colorScheme.primary
                     : Colors.grey),
-            onPressed: quantity < 10
+            onPressed: checkQuantity(QuantityType.add)
                 ? () {
                     quantity++;
                     debugPrint("+ ${quantity}");
-                    widget.onChange(Item(title: widget.title, price: widget.price, quantity: quantity));
+                    widget.onChange(Item(
+                        title: widget.title,
+                        price: widget.price,
+                        quantity: quantity));
                     setState(() {});
                   }
                 : null,
           ),
-          SizedBox(width: 20, child: Center(child: Text(quantity.toString()))),
+          SizedBox(
+              width: 20,
+              child: Center(
+                  child: Text(
+                quantity.toString(),
+              ))),
           IconButton(
               icon: Icon(Icons.remove_circle,
-                  color: quantity > 0
+                  color: checkQuantity(QuantityType.remove)
                       ? Theme.of(context).colorScheme.primary
                       : Colors.grey),
-              onPressed: quantity > 0
+              onPressed: checkQuantity(QuantityType.remove)
                   ? () {
                       quantity--;
                       debugPrint("- ${quantity}");
-                      widget.onChange(Item(title: widget.title, price: widget.price, quantity: quantity));
+                      widget.onChange(Item(
+                          title: widget.title,
+                          price: widget.price,
+                          quantity: quantity));
                       setState(() {});
                     }
                   : null),
@@ -65,4 +76,18 @@ class _ItemTileState extends State<ItemTile> {
       ]),
     );
   }
+
+  //檢查數量是否正確
+  bool checkQuantity(QuantityType type) {
+    return type == QuantityType.remove && quantity > 0 ||
+        type == QuantityType.add && quantity < 10;
+  }
+}
+
+enum QuantityType {
+  /// 數量減少
+  remove,
+
+  /// 數量增加
+  add,
 }
