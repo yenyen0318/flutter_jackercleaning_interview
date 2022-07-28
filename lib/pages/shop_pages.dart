@@ -31,6 +31,9 @@ class _ShopPageState extends State<ShopPage> {
             ItemList(
                 title: "服務項目",
                 onChange: (Item item) {
+                  //原始購物車數量
+                  int count = cartItems.length;
+
                   //若購物清單有同樣物品則清空
                   cartItems.isNotEmpty
                       ? cartItems
@@ -41,7 +44,10 @@ class _ShopPageState extends State<ShopPage> {
                     cartItems.add(item);
                   }
 
-                  setState(() {});
+                  //若購物車內容有異動畫面重劃
+                  if(count != cartItems.length){
+                    setState(() {});
+                  }
 
                   for (var element in cartItems) {
                     debugPrint(
