@@ -4,6 +4,7 @@ import 'package:jackercleaning_interview/pages/cart_page.dart';
 
 import '../components/bottom_button.dart';
 import '../components/item_list.dart';
+import '../components/warn_text.dart';
 
 class ShopPage extends StatefulWidget {
   const ShopPage({Key? key, required this.title}) : super(key: key);
@@ -45,7 +46,7 @@ class _ShopPageState extends State<ShopPage> {
                   }
 
                   //若購物車內容有異動畫面重劃
-                  if(count != cartItems.length){
+                  if (count != cartItems.length) {
                     setState(() {});
                   }
 
@@ -84,21 +85,32 @@ class _ShopPageState extends State<ShopPage> {
         ),
         Positioned(
           bottom: 0,
-          child: BottomButton(
-            text: "下一步",
-            onPressed: cartItems.length == 1
-                ? () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => CartPage(
-                                title: "確認價格",
-                                cartItem: cartItems,
-                              )),
-                    );
-                  }
-                : null,
-          ),
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            cartItems.length > 1
+                ? Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(children: const [
+                      WarnText(detail: "提示: 只能有⼀個服務項⽬的數量⼤於 0"),
+                    ]),
+                  )
+                : Container(),
+            BottomButton(
+              text: "下一步",
+              onPressed: cartItems.length == 1
+                  ? () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => CartPage(
+                                  title: "確認價格",
+                                  cartItem: cartItems,
+                                )),
+                      );
+                    }
+                  : null,
+            ),
+          ]),
         )
       ]),
     );
