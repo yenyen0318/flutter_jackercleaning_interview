@@ -26,21 +26,21 @@ class ItemList extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: SizedBox(
-              height: 480, //TODO: 有時間看一下有沒有比較好的寫法
-              child: Card(
-                  child: ListView.separated(
-                itemCount: items.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return ItemTile(
-                      title: items[index].title,
-                      price: items[index].price,
-                      onChange: onChange);
-                },
-                separatorBuilder: (BuildContext context, int index) {
-                  return const Divider();
-                },
-              ))),
+          child: Card(
+              child: ListView.separated(
+            shrinkWrap: true,
+            physics: const ClampingScrollPhysics(),
+            itemCount: items.length,
+            itemBuilder: (BuildContext context, int index) {
+              return ItemTile(
+                  title: items[index].title,
+                  price: items[index].price,
+                  onChange: onChange);
+            },
+            separatorBuilder: (BuildContext context, int index) {
+              return const Divider();
+            },
+          )),
         )
       ]),
     );
