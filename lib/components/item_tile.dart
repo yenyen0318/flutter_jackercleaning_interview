@@ -1,14 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:jackercleaning_interview/models/item.dart';
 
-class ItemTile extends StatelessWidget {
+class ItemTile extends StatefulWidget {
   const ItemTile({
     Key? key,
     required this.title,
     required this.price,
+    required this.onChange,
   }) : super(key: key);
 
   final String title;
   final int price;
+  final Function onChange;
+
+  @override
+  State<ItemTile> createState() => _ItemTileState();
+}
+
+class _ItemTileState extends State<ItemTile> {
+  int quantity = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -16,31 +26,42 @@ class ItemTile extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text(title),
+          Text(widget.title),
           Text(
-            '\$ $price',
+            '\$ ${widget.price}',
             style: Theme.of(context).textTheme.subtitle1,
           )
         ]),
         Row(children: [
           IconButton(
             icon: Icon(Icons.add_circle,
-                color: Theme.of(context).colorScheme.primary),
-            onPressed: () {
-              debugPrint("+");
-            },
+                color: quantity < 10
+                    ? Theme.of(context).colorScheme.primary
+                    : Colors.grey),
+            onPressed: quantity < 10
+                ? () {
+                    quantity++;
+                    debugPrint("+ ${quantity}");
+                    widget.onChange(Item(title: widget.title, price: widget.price, quantity: quantity));
+                    setState(() {});
+                  }
+                : null,
           ),
-          const Text('0'),
+          SizedBox(width: 20, child: Center(child: Text(quantity.toString()))),
           IconButton(
-            icon: Icon(Icons.remove_circle,
-                color: Theme.of(context).colorScheme.primary),
-            onPressed: () {
-              debugPrint("-");
-            },
-          ),
-         
+              icon: Icon(Icons.remove_circle,
+                  color: quantity > 0
+                      ? Theme.of(context).colorScheme.primary
+                      : Colors.grey),
+              onPressed: quantity > 0
+                  ? () {
+                      quantity--;
+                      debugPrint("- ${quantity}");
+                      widget.onChange(Item(title: widget.title, price: widget.price, quantity: quantity));
+                      setState(() {});
+                    }
+                  : null),
         ]),
-        
       ]),
     );
   }

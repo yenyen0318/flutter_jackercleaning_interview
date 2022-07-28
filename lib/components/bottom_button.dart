@@ -8,7 +8,7 @@ class BottomButton extends StatelessWidget {
   }) : super(key: key);
 
   final String text;
-  final Function onPressed;
+  final void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class BottomButton extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       height: 50,
       child: ElevatedButton(
-          onPressed: () => onPressed(),
+          onPressed: onPressed,
           child: Text(text),
           style: ButtonStyle(
               tapTargetSize: MaterialTapTargetSize.shrinkWrap, //避免底部空格

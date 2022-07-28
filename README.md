@@ -1,16 +1,19 @@
-# jackercleaning_interview
+# 潔客幫實作考題
 
-A new Flutter project.
+| ⽰意圖1 | ⽰意圖2 | ⽰意圖3 |
+| -------- | -------- | -------- |
+| ![](https://i.imgur.com/iyJKPMT.png)     | ![](https://i.imgur.com/UkoEUqk.png)     | ![](https://i.imgur.com/ZwZt7eF.png)     |
 
-## Getting Started
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+* ⽰意圖1
+    * 每個品項的初始數量皆為 0
+    * 最低數量為 0，最⾼數量為 10 
+        * 超過點擊範圍圖示+/-轉為灰底不可點擊
+    * 按下下⼀步時， 只能有⼀個服務項⽬的數量⼤於 0 ，且必須要有⼀個品項的數量⼤於0
+        * 不符需求時下一步按鈕圖示轉為灰底不可點擊
+    * 可以使⽤程式碼進⾏以上約束，或是跳出警⽰訊息來避免使⽤者進入下⼀個⾴⾯。切記以上條件如果沒有滿⾜就不能到下⼀⾴。
+        * 不符需求時將顯示紅字提示訊息
+* ⽰意圖2
+    * 按下結帳時，請跳出醒⽬的訊息 (如：Dialog、Toast) 來告知使⽤者結帳成功的訊息。
+    * 若會跳出彈窗，請在使⽤者按下確認按鈕後回到上⼀個⾴⾯，並將上⼀個⾴⾯的狀態清除。
+    * 如果使⽤者在按下結帳之前回到上⼀⾴，上⼀⾴的狀態應該保留，不應該被清除。

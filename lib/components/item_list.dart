@@ -9,10 +9,12 @@ class ItemList extends StatelessWidget {
     Key? key,
     required this.title,
     required this.items,
+    required this.onChange,
   }) : super(key: key);
 
   final String title;
   final List<Item> items;
+  final Function onChange;
 
   @override
   Widget build(BuildContext context) {
@@ -25,16 +27,18 @@ class ItemList extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: SizedBox(
-              height: 400, //TODO: 有時間看一下有沒有比較好的寫法
+              height: 480, //TODO: 有時間看一下有沒有比較好的寫法
               child: Card(
                   child: ListView.separated(
                 itemCount: items.length,
                 itemBuilder: (BuildContext context, int index) {
                   return ItemTile(
-                      title: items[index].title, price: items[index].price);
+                      title: items[index].title,
+                      price: items[index].price,
+                      onChange: onChange);
                 },
                 separatorBuilder: (BuildContext context, int index) {
-                  return Divider();
+                  return const Divider();
                 },
               ))),
         )

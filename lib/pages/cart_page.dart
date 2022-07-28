@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:jackercleaning_interview/pages/shop_pages.dart';
 
 import '../components/bottom_button.dart';
 import '../components/cart_list.dart';
 import '../models/item.dart';
 
 class CartPage extends StatefulWidget {
-  const CartPage({Key? key, required this.title}) : super(key: key);
+  const CartPage({Key? key, required this.title, required this.cartItem})
+      : super(key: key);
   final String title;
+  final List<Item> cartItem;
 
   @override
   State<CartPage> createState() => _CartPageState();
@@ -54,15 +57,37 @@ class _CartPageState extends State<CartPage> {
                       "訂單內容",
                       style: Theme.of(context).textTheme.headline1,
                     ),
-                    CartList(title: "服務項目", items: [
-                      Item(title: "分離式冷氣機（室內機）", price: 2500, quantity: 5),
-                    ]),
+                    CartList(title: "服務項目", items: widget.cartItem),
                   ]),
             ),
             BottomButton(
-              text: "結帳",
-              onPressed: () {},
-            )
+                text: "結帳",
+                onPressed: () {
+                  showDialog<String>(
+                    context: context,
+                    builder: (BuildContext context) => AlertDialog(
+                      title: const Text('結帳成功'),
+                      content:
+                          const Text('感謝您的購買，錢沒有不見，它只是變成了你喜歡的樣子，期待您再次購物!!'),
+                      actions: <Widget>[
+                        TextButton(
+                          onPressed: () {
+                            //移除所有路由
+                            Navigator.pushAndRemoveUntil<dynamic>(
+                              context,
+                              MaterialPageRoute<dynamic>(
+                                  builder: (context) => const ShopPage(
+                                        title: "冷氣機清潔",
+                                      )),
+                              (route) => false, //不顯示返回鍵
+                            );
+                          },
+                          child: const Text('繼續購物'),
+                        )
+                      ],
+                    ),
+                  );
+                })
           ],
         ),
       ),
