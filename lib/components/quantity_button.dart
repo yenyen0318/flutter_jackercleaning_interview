@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jackercleaning_interview/bloc/shop_bloc.dart';
@@ -40,11 +38,7 @@ class QuantityButton extends StatelessWidget {
               width: 20,
               child: Center(
                   child: Text(
-                "${state.cartItems[currentItem.title]?.quantity ?? 0}",
-                style: TextStyle(
-                    color: Color((Random().nextDouble() * 0xFFFFFF).toInt())
-                        .withOpacity(1.0)),
-              ))),
+                      "${state.cartItems[currentItem.title]?.quantity ?? 0}"))),
           (state.cartItems.containsKey(currentItem.title))
               ? IconButton(
                   icon: Icon(Icons.remove_circle,
