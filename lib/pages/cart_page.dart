@@ -79,6 +79,7 @@ class _CartPageState extends State<CartPage> {
                               MaterialPageRoute<dynamic>(
                                   builder: (context) => const ShopPage(
                                         title: "冷氣機清潔",
+                                        init: true,
                                       )),
                               (route) => false, //不顯示返回鍵
                             );

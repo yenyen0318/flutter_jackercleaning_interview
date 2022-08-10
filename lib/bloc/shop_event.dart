@@ -16,3 +16,7 @@ class RemoveItemQuantity extends ShopEvent {
   const RemoveItemQuantity({required this.item});
   final Item item;
 }
+
+class Initial extends ShopEvent {
+  const Initial();
+}

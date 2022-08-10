@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
           subtitle2: TextStyle(fontSize:13,color: Color(0xFF000000)),
         ),
       ),
-      home: const ShopPage(title: '冷氣機清潔'),
+      home: const ShopPage(title: '冷氣機清潔', init: true,),
     );
   }
 }

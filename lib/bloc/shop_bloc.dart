@@ -13,8 +13,13 @@ class ShopBloc extends Bloc<ShopEvent, ShopState> {
 
   ShopBloc() : super(const ShopStep({}, '')) {
     //依據各event事件加入商業邏輯
+    on<Initial>(_onInitial);
     on<AddItemQuantity>(_onAddItemQuantity);
     on<RemoveItemQuantity>(_onRemoveItemQuantity);
+  }
+
+  void _onInitial(Initial event, Emitter<ShopState> emit) {
+    cartItems = {};
   }
 
   void _onAddItemQuantity(AddItemQuantity event, Emitter<ShopState> emit) {

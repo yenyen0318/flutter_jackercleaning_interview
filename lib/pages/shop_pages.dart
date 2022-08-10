@@ -9,14 +9,18 @@ import '../components/item_list.dart';
 import '../components/warn_text.dart';
 
 class ShopPage extends StatefulWidget {
-  const ShopPage({Key? key, required this.title}) : super(key: key);
+  const ShopPage({Key? key, required this.title, required this.init})
+      : super(key: key);
   final String title;
+  final bool init;
 
   @override
   State<ShopPage> createState() => _ShopPageState();
 }
 
 class _ShopPageState extends State<ShopPage> {
+  Map<String, Item> cartItems = {};
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -26,13 +30,16 @@ class _ShopPageState extends State<ShopPage> {
             title: Text(widget.title),
             centerTitle: true,
           ),
-          body: const ShopContent()),
+          body: ShopContent(
+            init: widget.init,
+          )),
     );
   }
 }
 
 class ShopContent extends StatefulWidget {
-  const ShopContent({Key? key}) : super(key: key);
+  const ShopContent({Key? key, required this.init}) : super(key: key);
+  final bool init;
 
   @override
   State<ShopContent> createState() => _ShopContentState();
@@ -43,6 +50,11 @@ class _ShopContentState extends State<ShopContent> {
 
   @override
   Widget build(BuildContext context) {
+    //判斷是否進行初始化
+    if (widget.init) {
+      context.read<ShopBloc>().add(const Initial());
+    }
+
     return Stack(children: [
       ListView(
         //避免商品列表可滾動遮擋到下一步按鈕
@@ -75,9 +87,7 @@ class _ShopFooterState extends State<ShopFooter> {
   Widget build(BuildContext context) {
     return BlocBuilder<ShopBloc, ShopState>(
       buildWhen: (previousState, state) {
-        debugPrint("${state.runtimeType}");
-        return state.runtimeType == CartStep ||
-            state.runtimeType == ShopStep;
+        return state.runtimeType == CartStep || state.runtimeType == ShopStep;
       },
       builder: (context, state) {
         return Positioned(
