@@ -11,7 +11,7 @@ class CartList extends StatelessWidget {
   }) : super(key: key);
 
   final String title;
-  final List<Item> items;
+  final Map<String, Item> items;
 
   @override
   Widget build(BuildContext context) {
@@ -28,9 +28,9 @@ class CartList extends StatelessWidget {
                 itemCount: items.length,
                 itemBuilder: (BuildContext context, int index) {
                   return CartTile(
-                      title: items[index].title,
-                      price: items[index].price,
-                      quantity: items[index].quantity ?? 0);
+                      title: items.values.elementAt(index).title,
+                      price: items.values.elementAt(index).price,
+                      quantity:items.values.elementAt(index).quantity);
                 })),
       )
     ]);

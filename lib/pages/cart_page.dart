@@ -9,7 +9,7 @@ class CartPage extends StatefulWidget {
   const CartPage({Key? key, required this.title, required this.cartItem})
       : super(key: key);
   final String title;
-  final List<Item> cartItem;
+  final Map<String, Item> cartItem;
 
   @override
   State<CartPage> createState() => _CartPageState();

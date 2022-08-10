@@ -1,11 +1,11 @@
 class Item {
-  final String title;
-  final int price;
-  final int? quantity;
+  String title;
+  int price;
+  int quantity;
 
   Item({
     required this.title,
     required this.price,
-    this.quantity
+    required this.quantity
   });
 }
