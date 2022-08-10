@@ -15,23 +15,27 @@ class QuantityButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ShopBloc, ShopState>(
       buildWhen: (previousState, state) {
-        return previousState.runtimeType == ChangeQuantity &&
+        return state.runtimeType == ChangeQuantity &&
             state.currentClickItem == currentItem.title;
       },
       builder: (context, state) {
         return Row(children: [
-          IconButton(
-            icon: Icon(Icons.add_circle,
-                color: (state.cartItems.containsKey(currentItem.title) &&
-                        state.cartItems[currentItem.title]!.quantity ==
-                            state.max)
-                    ? Colors.grey
-                    : Theme.of(context).colorScheme.primary),
-            onPressed: () {
-              debugPrint("${currentItem.title} +");
-              context.read<ShopBloc>().add(AddItemQuantity(item: currentItem));
-            },
-          ),
+          (state.cartItems.containsKey(currentItem.title) &&
+                  state.cartItems[currentItem.title]!.quantity == state.max)
+              ? IconButton(
+                  icon: const Icon(Icons.add_circle, color: Colors.grey),
+                  //onPressed為null雖為灰色卻是半透明故寫死
+                  onPressed: () {},
+                )
+              : IconButton(
+                  icon: Icon(Icons.add_circle,
+                      color: Theme.of(context).colorScheme.primary),
+                  onPressed: () {
+                    context
+                        .read<ShopBloc>()
+                        .add(AddItemQuantity(item: currentItem));
+                  },
+                ),
           SizedBox(
               width: 20,
               child: Center(
@@ -41,17 +45,21 @@ class QuantityButton extends StatelessWidget {
                     color: Color((Random().nextDouble() * 0xFFFFFF).toInt())
                         .withOpacity(1.0)),
               ))),
-          IconButton(
-            icon: Icon(Icons.remove_circle,
-                color: (state.cartItems.containsKey(currentItem.title))
-                    ? Theme.of(context).colorScheme.primary
-                    : Colors.grey),
-            onPressed: () {
-              context
-                  .read<ShopBloc>()
-                  .add(RemoveItemQuantity(item: currentItem));
-            },
-          )
+          (state.cartItems.containsKey(currentItem.title))
+              ? IconButton(
+                  icon: Icon(Icons.remove_circle,
+                      color: Theme.of(context).colorScheme.primary),
+                  onPressed: () {
+                    context
+                        .read<ShopBloc>()
+                        .add(RemoveItemQuantity(item: currentItem));
+                  },
+                )
+              : IconButton(
+                  icon: const Icon(Icons.remove_circle, color: Colors.grey),
+                  //onPressed為null雖為灰色卻是半透明故寫死
+                  onPressed: () {},
+                )
         ]);
       },
     );

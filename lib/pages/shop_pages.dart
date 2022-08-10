@@ -74,12 +74,17 @@ class _ShopFooterState extends State<ShopFooter> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ShopBloc, ShopState>(
+      buildWhen: (previousState, state) {
+        debugPrint("${state.runtimeType}");
+        return state.runtimeType == CartStep ||
+            state.runtimeType == ShopStep;
+      },
       builder: (context, state) {
         return Positioned(
           bottom: 0,
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            if (state is AllowNextStep) ...[
+            if (state is CartStep) ...[
               BottomButton(
                   text: "下一步",
                   onPressed: () {
