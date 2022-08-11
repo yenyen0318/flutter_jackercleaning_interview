@@ -17,3 +17,13 @@
     * 按下結帳時，請跳出醒⽬的訊息 (如：Dialog、Toast) 來告知使⽤者結帳成功的訊息。
     * 若會跳出彈窗，請在使⽤者按下確認按鈕後回到上⼀個⾴⾯，並將上⼀個⾴⾯的狀態清除。
     * 如果使⽤者在按下結帳之前回到上⼀⾴，上⼀⾴的狀態應該保留，不應該被清除。
+
+---
+
+## Bonus
+將 setState 改為 BLoC，有將此部分的改寫簽入bloc分支，詳細可見: https://github.com/yenyen0318/flutter_jackercleaning_interview/tree/bloc ， 另有加入以下套件便於改寫:
+```
+flutter_bloc: ^8.0.1
+bloc: ^8.0.3
+equatable: ^2.0.3
+```
