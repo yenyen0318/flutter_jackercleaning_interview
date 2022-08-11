@@ -19,7 +19,6 @@ class BottomButton extends StatelessWidget {
           onPressed: onPressed,
           child: Text(text),
           style: ButtonStyle(
-              tapTargetSize: MaterialTapTargetSize.shrinkWrap, //避免底部空格
               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                   //移除圓角
                   RoundedRectangleBorder(

@@ -22,16 +22,16 @@ class CartList extends StatelessWidget {
       ),
       Padding(
         padding: const EdgeInsets.all(8.0),
-        child: SizedBox(
-            height: 500, //TODO: 有時間看一下有沒有比較好的寫法
-            child: ListView.builder(
-                itemCount: items.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return CartTile(
-                      title: items[index].title,
-                      price: items[index].price,
-                      quantity: items[index].quantity ?? 0);
-                })),
+        child: ListView.builder(
+            shrinkWrap: true,
+            physics: const ClampingScrollPhysics(),
+            itemCount: items.length,
+            itemBuilder: (BuildContext context, int index) {
+              return CartTile(
+                  title: items[index].title,
+                  price: items[index].price,
+                  quantity: items[index].quantity ?? 0);
+            }),
       )
     ]);
   }
