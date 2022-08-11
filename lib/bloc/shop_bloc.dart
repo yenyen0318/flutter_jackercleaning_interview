@@ -18,10 +18,12 @@ class ShopBloc extends Bloc<ShopEvent, ShopState> {
     on<RemoveItemQuantity>(_onRemoveItemQuantity);
   }
 
+  //初始化
   void _onInitial(Initial event, Emitter<ShopState> emit) {
     cartItems = {};
   }
 
+  //增加商品數量
   void _onAddItemQuantity(AddItemQuantity event, Emitter<ShopState> emit) {
     bool isAddItem = false;
     if (cartItems.containsKey(event.item.title)) {
@@ -38,13 +40,14 @@ class ShopBloc extends Bloc<ShopEvent, ShopState> {
 
     if (isAddItem) {
       emit(
-        cartItems.length == 1
+        _checkCart()
             ? CartStep(cartItems, event.item.title)
             : ShopStep(cartItems, event.item.title),
       );
     }
   }
 
+  //減少商品數量
   void _onRemoveItemQuantity(
       RemoveItemQuantity event, Emitter<ShopState> emit) {
     bool isRemoveItem = false;
@@ -60,10 +63,15 @@ class ShopBloc extends Bloc<ShopEvent, ShopState> {
 
     if (isRemoveItem) {
       emit(
-        cartItems.length == 1
+        _checkCart()
             ? CartStep(cartItems, event.item.title)
             : ShopStep(cartItems, event.item.title),
       );
     }
+  }
+
+  //檢查購物車是否允許進入結帳頁面
+  bool _checkCart() {
+    return cartItems.length == 1;
   }
 }

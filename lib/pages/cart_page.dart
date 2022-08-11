@@ -45,51 +45,52 @@ class _CartPageState extends State<CartPage> {
             fit: BoxFit.contain,
           ),
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: Stack(
           children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "訂單內容",
-                      style: Theme.of(context).textTheme.headline1,
-                    ),
-                    CartList(title: "服務項目", items: widget.cartItem),
-                  ]),
-            ),
-            BottomButton(
-                text: "結帳",
-                onPressed: () {
-                  showDialog<String>(
-                    barrierDismissible: false,
-                    context: context,
-                    builder: (BuildContext context) => AlertDialog(
-                      title: const Text('結帳成功'),
-                      content:
-                          const Text('感謝您的購買，錢沒有不見，它只是變成了你喜歡的樣子，期待您再次購物!!'),
-                      actions: <Widget>[
-                        TextButton(
-                          onPressed: () {
-                            //移除所有路由
-                            Navigator.pushAndRemoveUntil<dynamic>(
-                              context,
-                              MaterialPageRoute<dynamic>(
-                                  builder: (context) => const ShopPage(
-                                        title: "冷氣機清潔",
-                                        init: true,
-                                      )),
-                              (route) => false, //不顯示返回鍵
-                            );
-                          },
-                          child: const Text('繼續購物'),
-                        )
-                      ],
-                    ),
-                  );
-                })
+            ListView(
+                //避免商品列表可滾動遮擋到按鈕
+                padding: const EdgeInsets.only(
+                    left: 8, right: 8, top: 8, bottom: 50),
+                children: [
+                  Text(
+                    "訂單內容",
+                    style: Theme.of(context).textTheme.headline1,
+                  ),
+                  CartList(title: "服務項目", items: widget.cartItem),
+                ]),
+            Positioned(
+              bottom: 0,
+              child: BottomButton(
+                  text: "結帳",
+                  onPressed: () {
+                    showDialog<String>(
+                      barrierDismissible: false,
+                      context: context,
+                      builder: (BuildContext context) => AlertDialog(
+                        title: const Text('結帳成功'),
+                        content:
+                            const Text('感謝您的購買，錢沒有不見，它只是變成了你喜歡的樣子，期待您再次購物!!'),
+                        actions: <Widget>[
+                          TextButton(
+                            onPressed: () {
+                              //移除所有路由
+                              Navigator.pushAndRemoveUntil<dynamic>(
+                                context,
+                                MaterialPageRoute<dynamic>(
+                                    builder: (context) => const ShopPage(
+                                          title: "冷氣機清潔",
+                                          init: true,
+                                        )),
+                                (route) => false, //不顯示返回鍵
+                              );
+                            },
+                            child: const Text('繼續購物'),
+                          )
+                        ],
+                      ),
+                    );
+                  }),
+            )
           ],
         ),
       ),
