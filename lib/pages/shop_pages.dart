@@ -26,7 +26,7 @@ class _ShopPageState extends State<ShopPage> {
       ),
       body: Stack(children: [
         ListView(
-          //避免商品列表可滾動遮擋到下一步按鈕
+          //避免商品列表可滾動遮擋到按鈕
           padding: const EdgeInsets.only(bottom: 50),
           children: <Widget>[
             ItemList(
