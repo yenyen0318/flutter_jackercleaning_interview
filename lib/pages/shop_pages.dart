@@ -109,11 +109,16 @@ class _ShopFooterState extends State<ShopFooter> {
                   }),
             ] else ...[
               state.cartItems.length > 1
-                  ? Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(children: const [
-                        WarnText(detail: "提示: 只能有⼀個服務項⽬的數量⼤於 0"),
-                      ]),
+                  ? SizedBox(
+                      width: MediaQuery.of(context).size.width,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: const [
+                              WarnText(detail: "提示: 只能有⼀個服務項⽬的數量⼤於 0"),
+                            ]),
+                      ),
                     )
                   : Container(),
               const BottomButton(

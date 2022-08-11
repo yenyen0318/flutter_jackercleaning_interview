@@ -17,13 +17,17 @@ class CartTile extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        Text(
-          '$title  x $quantity',
-          style: Theme.of(context).textTheme.subtitle2,
+        Flexible(
+          child: Text(
+            '$title  x $quantity',
+            style: Theme.of(context).textTheme.subtitle2,
+          ),
         ),
-        Text(
-          '${quantity * price}',
-          style: Theme.of(context).textTheme.subtitle2,
+        Flexible(
+          child: Text(
+            '${quantity * price}',
+            style: Theme.of(context).textTheme.subtitle2,
+          ),
         ),
       ]),
     );

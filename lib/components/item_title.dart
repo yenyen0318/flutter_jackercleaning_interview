@@ -17,9 +17,11 @@ class ItemTitle extends StatelessWidget {
             thickness: 3,
             color: Theme.of(context).colorScheme.primary,
           )),
-      Text(
-        title,
-        style: Theme.of(context).textTheme.headline1,
+      Flexible(
+        child: Text(
+          title,
+          style: Theme.of(context).textTheme.headline1,
+        ),
       ),
     ]);
   }

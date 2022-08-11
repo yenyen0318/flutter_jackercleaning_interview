@@ -21,13 +21,15 @@ class _ItemTileState extends State<ItemTile> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-        Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text(widget.currentItem.title),
-          Text(
-            '\$ ${widget.currentItem.price}',
-            style: Theme.of(context).textTheme.subtitle1,
-          )
-        ]),
+        Flexible(
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(widget.currentItem.title),
+            Text(
+              '\$ ${widget.currentItem.price}',
+              style: Theme.of(context).textTheme.subtitle1,
+            )
+          ]),
+        ),
         QuantityButton(
           currentItem: widget.currentItem,
         )
